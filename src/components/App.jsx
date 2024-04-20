@@ -1,16 +1,15 @@
-export const App = () => {
+import { useState } from 'react'
+import  Tv from './Tv/Tv'
+
+
+function App() {
+  const [count, setCount] = useState(0)
+
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
-    </div>
-  );
-};
+    <>
+     <Tv></Tv>
+    </>
+  )
+}
+
+export default App
