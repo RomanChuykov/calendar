@@ -6,12 +6,7 @@ import './Tv.css';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import en from 'date-fns/locale/uk'; // Импортируем нужную локаль
 
-const express=require('express');
-const fs=require('fs');
-const file=express();
-const port=5000;
 
-file.use(express.json())
 
 
 function Tv() {
@@ -30,3 +25,12 @@ function Tv() {
 }
 
 export default Tv;
+/*
+{
+  tv:25.06.2004,
+  phone:25.06.2024,
+  computer:25.06.2024
+}
+
+
+*/
