@@ -6,6 +6,7 @@ export async function getAPI(){
     
         const response=  await axios.get('');
         const data=response.data;
+        console.log('data', data);
         return data;
      
 };

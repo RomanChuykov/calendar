@@ -8,24 +8,31 @@ import en from 'date-fns/locale/uk'; // Импортируем нужную ло
    import axios from 'axios';
  import { getAPI } from 'components/fetchAPI/fetchAPI';
 
-function Tv() {
+ 
+
+ function Tv() {
   const [date, setDate] = useState({today:new Date(),endDate:new Date()});
 
   const onChange = (newDate) => {
     setDate({...date,endDate:newDate});
+    
+  
+    console.log('newDate', newDate)
   };
-useEffect(()=>{
- async function getData(){
-   try {
-    const data=   await getAPI()
-    console.log('data', data)
-    console.log('data.result', data.data)
-  } catch (error) {
-    console.log(error.message)
-  }
-getData(); 
- }
-},[])
+  
+  async function getData(){
+    console.log("getData")
+     try {
+      const data=await getAPI()
+      console.log('data', data.tv)
+      setDate(prevState=>({
+      ...prevState,endDate:data.tv
+      }))
+    } catch (error) {
+      console.log(error.message)
+    }
+   }
+useEffect(()=>{getData();},[])
 
   return (
     <div>
