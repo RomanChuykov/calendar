@@ -6,7 +6,7 @@ import './Tv.css';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import en from 'date-fns/locale/uk'; // Импортируем нужную локаль
    import axios from 'axios';
- import { getAPI } from 'components/fetchAPI/fetchAPI';
+ import { getAPI,postApi } from 'components/fetchAPI/fetchAPI';
 
  
 
@@ -15,7 +15,7 @@ import en from 'date-fns/locale/uk'; // Импортируем нужную ло
 
   const onChange = (newDate) => {
     setDate({...date,endDate:newDate});
-    
+    postData(newDate);
   
     console.log('newDate', newDate)
   };
@@ -24,7 +24,7 @@ import en from 'date-fns/locale/uk'; // Импортируем нужную ло
     console.log("getData")
      try {
       const data=await getAPI()
-      console.log('data', data.tv)
+      console.log('data Tv', data)
       setDate(prevState=>({
       ...prevState,endDate:data.tv
       }))
@@ -32,7 +32,21 @@ import en from 'date-fns/locale/uk'; // Импортируем нужную ло
       console.log(error.message)
     }
    }
+async function postData(newDate){
+  try {
+    const data=await getAPI()
+    // data.tv=date.endDate;
+    data.tv=newDate;  
+    console.log('data postData', data)
+    const res= await postApi(data);
+    console.log('res', res)
+  } catch (error) {
+    
+  }
+};
+
 useEffect(()=>{getData();},[])
+// useEffect(()=>{postData()},[date])
 
   return (
     <div>
