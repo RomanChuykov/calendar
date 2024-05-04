@@ -5,7 +5,7 @@ import React, { useState, useEffect } from 'react';
 import './Tv.css';
 import { registerLocale, setDefaultLocale } from 'react-datepicker';
 import en from 'date-fns/locale/uk'; // Импортируем нужную локаль
-   import axios from 'axios';
+  //  import axios from 'axios';
  import { getAPI,postApi } from 'components/fetchAPI/fetchAPI';
 
  
