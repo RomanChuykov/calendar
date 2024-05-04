@@ -3,8 +3,8 @@ import { CalendarS} from './Tv.styled';
 import React, { useState, useEffect } from 'react';
 // import Calendar from 'react-calendar';
 import './Tv.css';
-import { registerLocale, setDefaultLocale } from 'react-datepicker';
-import en from 'date-fns/locale/uk'; // Импортируем нужную локаль
+// import { registerLocale, setDefaultLocale } from 'react-datepicker';
+// import en from 'date-fns/locale/uk'; // Импортируем нужную локаль
   //  import axios from 'axios';
  import { getAPI,postApi } from 'components/fetchAPI/fetchAPI';
 
