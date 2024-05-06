@@ -10,9 +10,10 @@ import './Tv.css';
 
  
 
- function Tv() {
-  const [date, setDate] = useState({today:new Date(),endDate:new Date()});
-
+ function Tv({tvDate}) {
+  const [date, setDate] = useState({today:new Date(),endDate:tvDate});
+console.log('date', date)
+console.log('tvDate', tvDate)
   const onChange = (newDate) => {
     setDate({...date,endDate:newDate});
     postData(newDate);
@@ -20,18 +21,7 @@ import './Tv.css';
     console.log('newDate', newDate)
   };
   
-  async function getData(){
-    console.log("getData")
-     try {
-      const data=await getAPI()
-      console.log('data Tv', data)
-      setDate(prevState=>({
-      ...prevState,endDate:data.tv
-      }))
-    } catch (error) {
-      console.log(error.message)
-    }
-   }
+  
 async function postData(newDate){
   try {
     const data=await getAPI()
@@ -45,7 +35,10 @@ async function postData(newDate){
   }
 };
 
-useEffect(()=>{getData();},[])
+useEffect(()=>{
+
+  setDate(prevState=>({...prevState,endDate:tvDate}))
+},[tvDate])
 // useEffect(()=>{postData()},[date])
 
   return (
@@ -57,13 +50,4 @@ useEffect(()=>{getData();},[])
 }
 
 export default Tv;
-/*()
 
-{
-  tv:25.06.2004,
-  phone:25.06.2024,
-  computer:25.06.2024
-}
-
-
-*/
