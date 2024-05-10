@@ -1,17 +1,16 @@
 import { useState,useEffect } from 'react'
 import  Tv from './Tv/Tv'
-import { getAPI } from './fetchAPI/fetchAPI'
-
+import { getAPI,postApi } from 'components/fetchAPI/fetchAPI';
+import modalPassword from 'components/ModalPassword/ModalPassword';
 function App() {
   const [date, setDate] = useState({tv:null,phone:null,computer:null})
-  
+  // const [modal,setModal]=useState(false);
+
+
   async function getData(){
     console.log("getData")
      try {
       const data=await getAPI()
-      // setDate(prevState=>({
-        // ...prevState,
-        // }))
         setDate({
           tv:data.tv,
           phone:data.phone,
@@ -22,6 +21,18 @@ function App() {
         console.log(error.message)
       }
     }
+  async function postData(newDate){
+    try {
+      const data=await getAPI()
+      // data.tv=date.endDate;
+      data.tv=newDate;  
+      console.log('data postData', data)
+      const res= await postApi(data);
+      console.log('res', res)
+    } catch (error) {
+      
+    }
+  };
    
       
       
@@ -29,7 +40,7 @@ function App() {
    
   return (
     <>
-     <Tv tvDate={date.tv}></Tv>
+     <Tv tvDate={date.tv} postData={postData}></Tv>
     </>
   )
 }
