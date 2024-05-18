@@ -1,19 +1,19 @@
 
-import { CalendarS} from './Tv.styled';
+import { CalendarS} from './Computer.styled';
 import React, { useState, useEffect } from 'react';
-import './Tv.css';
+import './Computer.css';
 
 
 
  
 
- function Tv({tvDate,postData}) {
-  const [date, setDate] = useState({today:new Date(),endDate:tvDate});
+ function Computer({compDate,postData}) {
+  const [date, setDate] = useState({today:new Date(),endDate:compDate});
   function onChange (newDate) {
     const password=prompt("Enter password");
     if (password!==false && password==="gaw") {
       setDate({...date,endDate:newDate});
-      postData("Tv",newDate);
+      postData("Computer",newDate);
       
     } else {
       alert("You entered wrong password")
@@ -21,16 +21,16 @@ import './Tv.css';
   };
   
 useEffect(()=>{
-  setDate(prevState=>({...prevState,endDate:tvDate}))
-  },[tvDate])
+  setDate(prevState=>({...prevState,endDate:compDate}))
+  },[compDate])
 
   return (
     <div>
-      <h1>Tv</h1>
+      <h1>Computer</h1>
       <CalendarS onChange={onChange} value={[date.today,date.endDate]} locale="en"/>
     </div>
   );
 }
 
-export default Tv;
+export default Computer;
 

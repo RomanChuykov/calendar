@@ -1,36 +1,35 @@
 
-import { CalendarS} from './Tv.styled';
+import { CalendarS} from './Phone.styled';
 import React, { useState, useEffect } from 'react';
-import './Tv.css';
+import './Phone.css';
 
 
 
  
 
- function Tv({tvDate,postData}) {
-  const [date, setDate] = useState({today:new Date(),endDate:tvDate});
+ function Phone({phoneDate,postData}) {
+  const [date, setDate] = useState({today:new Date(),endDate:phoneDate});
   function onChange (newDate) {
     const password=prompt("Enter password");
     if (password!==false && password==="gaw") {
       setDate({...date,endDate:newDate});
-      postData("Tv",newDate);
-      
+      postData("Phone",newDate);
     } else {
       alert("You entered wrong password")
     }
   };
   
 useEffect(()=>{
-  setDate(prevState=>({...prevState,endDate:tvDate}))
-  },[tvDate])
+  setDate(prevState=>({...prevState,endDate:phoneDate}))
+  },[phoneDate])
 
   return (
     <div>
-      <h1>Tv</h1>
+      <h1>Phone</h1>
       <CalendarS onChange={onChange} value={[date.today,date.endDate]} locale="en"/>
     </div>
   );
 }
 
-export default Tv;
+export default Phone;
 

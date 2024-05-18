@@ -1,7 +1,10 @@
 import { useState,useEffect } from 'react'
 import  Tv from './Tv/Tv'
+import Computer from './Computer/Computer';
+import Phone from './Phone/Phone';
 import { getAPI,postApi } from 'components/fetchAPI/fetchAPI';
-import modalPassword from 'components/ModalPassword/ModalPassword';
+// import modalPassword from 'components/ModalPassword/ModalPassword';
+
 function App() {
   const [date, setDate] = useState({tv:null,phone:null,computer:null})
   // const [modal,setModal]=useState(false);
@@ -21,11 +24,22 @@ function App() {
         console.log(error.message)
       }
     }
-  async function postData(newDate){
+  async function postData(device,newDate){
     try {
-      const data=await getAPI()
-      // data.tv=date.endDate;
-      data.tv=newDate;  
+      const data=await getAPI();
+      switch (device) {
+        case "Tv":
+          data.tv=newDate;  
+          break;
+        case "Computer":
+          data.computer=newDate;  
+          break;
+        case "Phone":
+          data.phone=newDate;  
+          break;    
+        default:
+          break;
+      }
       console.log('data postData', data)
       const res= await postApi(data);
       console.log('res', res)
@@ -33,14 +47,13 @@ function App() {
       
     }
   };
-   
-      
-      
-      useEffect(()=>{getData();},[])
+  useEffect(()=>{getData();},[])
    
   return (
     <>
-     <Tv tvDate={date.tv} postData={postData}></Tv>
+    <Tv tvDate={date.tv} postData={postData}></Tv>
+    <Computer compDate={date.computer} postData={postData}/>
+    <Phone phoneDate={date.phone} postData={postData}/>
     </>
   )
 }
